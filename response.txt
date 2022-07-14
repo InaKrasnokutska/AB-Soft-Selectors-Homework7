@@ -1,0 +1,12 @@
+HTTP/1.1 304 Not Modified
+Accept-Ranges: bytes
+Cache-Control: public, max-age=0
+Last-Modified: Wed, 13 Jul 2022 17:03:51 GMT
+ETag: W/"69-181f88458a7"
+Date: Wed, 13 Jul 2022 17:23:05 GMT
+Connection: keep-alive
+Keep-Alive: timeout=5
+
+<li>Нагадування 1</li>
+<li>Нагадування 2</li>
+<li>Нагадування 3</li>

@@ -1,33 +1,47 @@
-// Додаємо слухач кліку: метод, що буде виконуватися при кліку на кнопку
-// "Додати нагадування"
-document.getElementById('addNote').addEventListener('click', () => {
-  // Знаходимо тектове поле нагадування
-  let noteInput = document.getElementById('noteInput');
+﻿// Додаємо слухач кліку: метод, що буде виконуватися при кліку на кнопку
+// "Додати задачу"
+document.getElementById('addListItem').addEventListener('click', () => {
+  // Знаходимо тектове поле задачи
+  let listItemContentEl = document.getElementById('newItemInput');
   // Беремо введене значення
-  let newNoteText = noteInput.value;
+  let listItemContentText = listItemContentEl.value;
 
   // Якщо значення є - додаємо новий елемент до списку
-  if (newNoteText) {
+  if (listItemContentText) {
     // Створюємо елемент
-    let newNoteElement = document.createElement('li');
+    let listItem = document.createElement('li');
     // Встановлюємо його контент рівним значенню з текстового поля
-    newNoteElement.textContent = newNoteText;
+    listItem.textContent = listItemContentText;
 
     // Додаємо створений елемент до списку
-    document.getElementById('notesList').appendChild(newNoteElement);
+    document.getElementById('myList').appendChild(listItem);
+
     // Вичищаємо непотрібне значення з текстового поля
-    noteInput.value = '';
+    listItemContentEl.value = '';
   }
 })
 
 // Завантажуємо з сервера файл і додаємо його зміст до списку
-document.getElementById('loadNotes').addEventListener('click', () => {
-  const request = new XMLHttpRequest();
-  request.onload = function () {
-    document.getElementById('notesList').innerHTML = this.responseText;
-    console.log('Onload request. ' + this.responseText);
+document.getElementById('loadItems').addEventListener('click', () => {
+  const xhttp = new XMLHttpRequest();
+  xhttp.onload = function() {
+    document.getElementById('myList').innerHTML = this.responseText;
   }
+  xhttp.open('GET', '_items.html', true);
+  xhttp.send();
+})
 
-  request.open('GET', '_items.html', true);
-  request.send();
+
+//Delete items from the list
+document.getElementById('deleteItems').addEventListener('click', () => {
+    let element = document.getElementById('myList');
+    while (element.firstChild) {
+      element.removeChild(element.firstChild);
+    }
+})
+
+//Scroll to the beginning
+document.getElementById('Scroll').addEventListener('click', () => {
+    var topOfThePage = document.getElementById('beginning');
+    topOfThePage.scrollIntoView();
 })
